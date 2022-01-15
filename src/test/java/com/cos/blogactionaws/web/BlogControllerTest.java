@@ -18,6 +18,6 @@ public class BlogControllerTest {
 	@Test
 	public void home() {
 		ResponseEntity<String> response = restTemplate.getForEntity("/", String.class);
-		assertEquals("<h1>docker-compose-v1</h1>", response.getBody());
+		assertEquals("<h1>docker-compose-v2</h1>", response.getBody());
 	}
 }

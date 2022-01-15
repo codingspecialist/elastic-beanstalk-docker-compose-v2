@@ -8,6 +8,6 @@ public class BlogController {
 
 	@GetMapping("/")
 	public String home() {
-		return "<h1>docker-compose-v1</h1>";
+		return "<h1>docker-compose-v2</h1>";
 	}
 }

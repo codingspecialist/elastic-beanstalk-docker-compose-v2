@@ -1,6 +1,6 @@
-# elastic-beanstalk docker-compose.yml 로 배포하기
+# elastic-beanstalk-docker-compose-v2 로 배포하기
 
-### Github과 GithubAction 없이 수동 배포해보기
+### Github과 GithubAction 으로 zip 파일 배포하기
 - Docker 아마존 리눅스2 환경 생성 (해당환경에서는 Dockerrun.aws.json 사용안함. docker-compose 지원함)
 - Dockerfile 생성
 - docker-compose.yml 생성
@@ -9,6 +9,7 @@
 ```gradle
   ./gradlew clean build
 ```
-- 직접 파일 업로드하기
-- 업로드시 zip 파일로 압축해서 보내면 되는데..
-- 폴더를 zip파일로 하면 폴더안에 폴더 나오기 때문에 꼭 파일들을 zip으로 압축하자.
+- github에 푸시하기
+- deploy.yml 에서 푸시된 자바 코드 빌드한 뒤 deploy 폴더에 Dockerfile, docker-compose.yml app.jar 파일 묶어서 
+- zip파일로 생성하기
+- 해당 zip 파일 최종적으로 엘라스틱 빈스톡에 던진다.
