@@ -20,4 +20,4 @@ public class BlogControllerTest {
 		ResponseEntity<String> response = restTemplate.getForEntity("/", String.class);
 		assertEquals("<h1>docker-compose-v2</h1>", response.getBody());
 	}
-}
+}   

@@ -2,6 +2,7 @@
 
 ### Github과 GithubAction 으로 zip 파일 배포하기
 - Docker 아마존 리눅스2 환경 생성 (해당환경에서는 Dockerrun.aws.json 사용안함. docker-compose 지원함)
+- 환경생성시에 프록시서버 nginx 기본으로 설정되어 있는것 없음으로 변경하고 하기
 - Dockerfile 생성
 - docker-compose.yml 생성
 - 포트 80:8080 포워딩 하기
