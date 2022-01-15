@@ -1,5 +1,3 @@
-# 아직 사용안함. 다음 step2에서 github-action 연동 예정
-
 name: elastic-beanstalk-docker-compose-v2
 on:
   push:
