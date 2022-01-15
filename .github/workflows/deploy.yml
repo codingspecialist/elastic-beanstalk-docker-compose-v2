@@ -1,13 +1,13 @@
 # 아직 사용안함. 다음 step2에서 github-action 연동 예정
 
-name: github-action-stalk-no-nginx
+name: elastic-beanstalk-docker-compose-v2
 on:
   push:
     branches:
       - master
   workflow_dispatch: null
 
-# V2는 사용자 정의 배포를 지원하고 Zulu OpenJDK, Eclipse Temurin 및 Adopt OpenJDK를 기본적으로 지원합니다. V1은 Zulu OpenJDK만 지원합니다.
+# actions/setup-java@v2는 사용자 정의 배포를 지원하고 Zulu OpenJDK, Eclipse Temurin 및 Adopt OpenJDK를 기본적으로 지원합니다. V1은 Zulu OpenJDK만 지원합니다.
 jobs:
   build:
     runs-on: ubuntu-18.04
@@ -41,9 +41,9 @@ jobs:
       - name: Generate deployment package
         run: |
           mkdir -p deploy
-          cp build/libs/*.jar deploy/application.jar
-          cp Procfile deploy/Procfile
-          cp -r .ebextensions deploy/.ebextensions
+          cp build/libs/*.jar deploy/app.jar
+          cp Dockerfile deploy/Dockerfile
+          cp docker-compose.yml deploy/docker-compose.yml
           cd deploy && zip -r deploy.zip .
 
       - name: Deploy to EB
@@ -51,8 +51,8 @@ jobs:
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
           aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
-          application_name: beanstalk-server # 엘리스틱 빈스톡 애플리케이션 이름!
-          environment_name: Beanstalkserver-env # 엘리스틱 빈스톡 환경 이름!
+          application_name: elastic-beanstalk-docker-compose-v2 # 엘리스틱 빈스톡 애플리케이션 이름!
+          environment_name: Elasticbeanstalkdockercomposev2-env # 엘리스틱 빈스톡 환경 이름!
           version_label: github-action-${{steps.current-time.outputs.formattedTime}}
           region: ap-northeast-2
           deployment_package: deploy/deploy.zip
